@@ -7,21 +7,23 @@ from constants import HOME_DIR
 
 
 def chunks(l, n):
-    """Yield successive n-sized chunks from l."""
-    for i in xrange(0, len(l), n):
-        yield l[i:i + n]
+	"""Yield successive n-sized chunks from l."""
+	for i in xrange(0, len(l), n):
+		yield l[i:i + n]
 
 
 def load_weights(net, path, epochtoload):
-    """
-    Load a pretrained model
-    :param epochtoload: epoch to load
-    :param net: model object
-    :param path: path of the weights to be set
-    """
-    with np.load(HOME_DIR + path + "modelWeights{:04d}.npz".format(epochtoload)) as f:
-        param_values = [f['arr_%d' % i] for i in range(len(f.files))]
-    lasagne.layers.set_all_param_values(net, param_values)
+	"""
+	Load a pretrained model
+	:param epochtoload: epoch to load
+	:param net: model object
+	:param path: path of the weights to be set
+	"""
+	with np.load(HOME_DIR + path + "modelWeights{:04d}.npz".format(epochtoload)) as f:
+		param_values = [f['arr_%d' % i] for i in range(len(f.files))]
+	lasagne.layers.set_all_param_values(net, param_values)
+
+
 
 
 def predict(model, image_stimuli, num_epoch=None, name=None, path_output_maps=None):
@@ -49,6 +51,5 @@ def predict(model, image_stimuli, num_epoch=None, name=None, path_output_maps=No
         # When we use for testing, there is no file name provided.
         cv2.imwrite('./' + path_output_maps + '/validationRandomSaliencyPred_{:04d}.png'.format(num_epoch), saliency_map)
     else:
-        cv2.imwrite(os.path.join(path_output_maps, name + '.jpg'), saliency_map)
-
-
+		cv2.imwrite(os.path.join(path_output_maps, name + '.jpg'), saliency_map)
+	#return saliency_map

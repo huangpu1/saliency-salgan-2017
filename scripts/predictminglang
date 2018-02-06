@@ -24,7 +24,7 @@ def main():
     # Here need to specify the epoch of model sanpshot
     load_weights(model.net['output'], path='gen_', epochtoload=90)
     # Here need to specify the path to images and output path
-    test(path_to_images='../images/', path_output_maps='../saliency2/', model_to_test=model)
+    test(path_to_images='../images2/', path_output_maps='../saliency2/', model_to_test=model)
 
 if __name__ == "__main__":
     main()

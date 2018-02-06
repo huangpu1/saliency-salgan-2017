@@ -6,7 +6,7 @@ import glob
 from utils import *
 from constants import *
 from models.model_bce import ModelBCE
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+
 
 def test(path_to_images, path_output_maps, model_to_test=None):
     list_img_files = [k.split('/')[-1].split('.')[0] for k in glob.glob(os.path.join(path_to_images, '*'))]
@@ -20,11 +20,11 @@ def test(path_to_images, path_output_maps, model_to_test=None):
 
 def main():
     # Create network
-    model = ModelBCE(INPUT_SIZE[0], INPUT_SIZE[1], batch_size=1)
+    model = ModelBCE(INPUT_SIZE[0], INPUT_SIZE[1], batch_size=8)
     # Here need to specify the epoch of model sanpshot
     load_weights(model.net['output'], path='gen_', epochtoload=90)
     # Here need to specify the path to images and output path
-    test(path_to_images='../images/', path_output_maps='../saliency2/', model_to_test=model)
+    test(path_to_images='../images/', path_output_maps='../saliency/', model_to_test=model)
 
 if __name__ == "__main__":
     main()

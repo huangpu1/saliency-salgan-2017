@@ -22,9 +22,9 @@ def main():
     # Create network
     model = ModelBCE(INPUT_SIZE[0], INPUT_SIZE[1], batch_size=1)
     # Here need to specify the epoch of model sanpshot
-    load_weights(model.net['output'], path='gen_', epochtoload=90)
+    load_weights(model.net['output'], path='minglanggen_', epochtoload=145)
     # Here need to specify the path to images and output path
-    test(path_to_images='../images/', path_output_maps='../saliency2/', model_to_test=model)
+    test(path_to_images='/home/s/re/minglang_for_salgan/test_images/', path_output_maps='/home/s/re/minglang_for_salgan/testout/', model_to_test=model)
 
 if __name__ == "__main__":
     main()
